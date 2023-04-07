@@ -3,7 +3,8 @@ package cscd212classes.lab2;
 import java.util.Objects;
 import java.lang.Object;
 
-public class Television extends Object implements Comparable<Television>{
+public class Television extends Object implements Comparable<Television>
+{
 
     private final String make;
     private final String model;
@@ -16,9 +17,11 @@ public class Television extends Object implements Comparable<Television>{
                       final String model,
                       final boolean smart,
                       final int screenSize,
-                      final int resolution){
-        if(model == null || model.isEmpty() || (screenSize < 32) || (resolution < 720)){
-            new IllegalArgumentException("Parameters not acceptable");
+                      final int resolution)
+    {
+        if (model == null || model.isEmpty() || (screenSize < 32) || (resolution < 720))
+        {
+           throw  new IllegalArgumentException("Parameters not acceptable");
         }
         this.make = make;
         this.model = model;
@@ -34,8 +37,9 @@ public class Television extends Object implements Comparable<Television>{
                       final int resolution,
                       final String make)
     {
-        if(model == null || model.isEmpty() || (screenSize < 32) || (resolution < 720)){
-           new IllegalArgumentException("Parameters not acceptable");
+        if (model == null || model.isEmpty() || (screenSize < 32) || (resolution < 720))
+        {
+          throw new IllegalArgumentException("Parameters not acceptable");
         }
 
         this.model = model;
@@ -47,59 +51,79 @@ public class Television extends Object implements Comparable<Television>{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Television that = (Television) o;
-        return fourk == that.fourk && resolution == that.resolution && screenSize == that.screenSize && smart == that.smart && Objects.equals(make, that.make) && Objects.equals(model, that.model);
+        return this.fourk == that.fourk && this.resolution == that.resolution && this.screenSize == that.screenSize && this.smart
+                == that.smart && Objects.equals(this.make, that.make) && Objects.equals(this.model, that.model);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(fourk, make, model, resolution, screenSize, smart);
+    public int hashCode()
+    {
+        return Objects.hash(this.fourk, this.make, this.model, this.resolution, this.screenSize, this.smart);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Television{" +
-                "fourk=" + fourk +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", resolution=" + resolution +
-                ", screenSize=" + screenSize +
-                ", smart=" + smart +
+                "fourk=" + this.fourk +
+                ", make='" + this.make + '\'' +
+                ", model='" + this.model + '\'' +
+                ", resolution=" + this.resolution +
+                ", screenSize=" + this.screenSize +
+                ", smart=" + this.smart +
                 '}';
     }
 
-    public String getMake() {
-        return make;
+    public String getMake()
+    {
+        return this.make;
     }
 
-    public String getModel() {
-        return model;
+    public String getModel()
+    {
+        return this.model;
     }
 
-    public int getResolution() {
-        return resolution;
+    public int getResolution()
+    {
+        return this.resolution;
     }
 
-    public int getScreenSize() {
-        return screenSize;
+    public int getScreenSize()
+    {
+        return this.screenSize;
     }
 
     @Override
-    public int compareTo(Television another) {
-        if(another == null){
-            new IllegalArgumentException("The argument provided is null./n");
+    public int compareTo(final Television another)
+    {
+        if (another == null)
+        {
+            throw new IllegalArgumentException("The argument provided is null./n");
         }
         int sameMake = this.getMake().compareTo(another.getMake());
         int sameModel = this.getModel().compareTo(another.getModel());
         int sameSize = this.getScreenSize() - another.getScreenSize();
 
-        if(sameMake != 0){
+        if(sameMake != 0)
+        {
             return sameMake;
-        } else if (sameModel != 0) {
+        }
+        else if (sameModel != 0) {
             return sameModel;
-        }else return 0;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
