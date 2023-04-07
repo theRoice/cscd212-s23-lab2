@@ -3,7 +3,7 @@ package cscd212classes.lab2;
 import java.util.Objects;
 import java.lang.Object;
 
-public class Television{
+public class Television extends Object implements Comparable<Television>{
 
     private final String make;
     private final String model;
@@ -89,8 +89,17 @@ public class Television{
 
     @Override
     public int compareTo(Television another) {
+        if(another == null){
+            new IllegalArgumentException("The argument provided is null./n");
+        }
+        int sameMake = this.getMake().compareTo(another.getMake());
+        int sameModel = this.getModel().compareTo(another.getModel());
+        int sameSize = this.getScreenSize() - another.getScreenSize();
 
-
-        //TODO Write compareTo() method
+        if(sameMake != 0){
+            return sameMake;
+        } else if (sameModel != 0) {
+            return sameModel;
+        }else return 0;
     }
 }
