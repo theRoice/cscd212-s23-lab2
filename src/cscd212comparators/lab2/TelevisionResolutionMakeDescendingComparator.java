@@ -4,14 +4,11 @@ import cscd212classes.lab2.Television;
 
 public class TelevisionResolutionMakeDescendingComparator extends Object implements Comparator<Television>{
     public int compare(Television t1, Television t2){
-        if(t1 == null){
-           new IllegalArgumentException("null parameter in TelevisionResolutionMakeDescendingComparator");
-        }
-        if(t2 == null){
-            new IllegalArgumentException("null parameter in TelevisionResolutionMakeDescendingComparator");
+        if(t1 == null || t2 == null){
+          throw new IllegalArgumentException("null parameter in TelevisionResolutionMakeDescendingComparator");
         }
         int difference = t2.getResolution() - t1.getResolution();
-        int sameMake = t2.getMake().compareTo(t2.getMake());
+        int sameMake = t2.getMake().compareTo(t1.getMake());
         if(difference != 0){
             return difference;
        }else if(sameMake!= 0){
